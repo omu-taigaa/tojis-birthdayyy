@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Birthday Unlock — FOSSIL</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="card" role="main">
+  <div class="left">
+    <h1>Secret Birthday Unlock</h1>
+    <p class="lead">answer the 6 questions correctly to reveal each letter of a surprise word. 2 questions use buttons (yes/no). date input (q6) supports dropdown or many text formats like <em>20/31/2030</em> or <em>12/31/2030</em>.</p>
+
+    <!-- Q1 -->
+    <div class="question" id="q1">
+      <div class="q-title">1) WHAT IS YOUR NAME</div>
+      <div class="q-hint">accepts uppercase and lowercase YAY</div>
+      <input id="nameInput" type="text" placeholder="type the birthday boy’s name" autocomplete="off">
+      <div style="display:flex;gap:8px;margin-top:10px;">
+        <button class="btn" onclick="checkQ1()">check answer</button>
+        <button class="btn" onclick="clearField('nameInput')">clear text</button>
+      </div>
+      <div class="small" id="q1-msg"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question" id="q2">
+      <div class="q-title">2) is it your birthday (yes/no)</div>
+      <div class="q-hint">press <strong>yeahhhh</strong> or <strong>no..</strong>.</div>
+      <div class="btn-row" style="margin-top:8px;">
+        <button class="btn btn-yes" onclick="checkQ2('yes')">yeahhfebibfbdffb</button>
+        <button class="btn btn-no" onclick="checkQ2('no')">no…………</button>
+      </div>
+      <div class="small" id="q2-msg"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question" id="q3">
+      <div class="q-title">3) how old are u turning</div>
+      <div class="q-hint">type the number in uh numbers ??</div>
+      <input id="ageInput" type="number" placeholder="18" min="1">
+      <div style="display:flex;gap:8px;margin-top:10px;">
+        <button class="btn" onclick="checkQ3()">check answer</button>
+        <button class="btn" onclick="clearField('ageInput')">clear text</button>
+      </div>
+      <div class="small" id="q3-msg"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question" id="q4">
+      <div class="q-title">4) who sent u this</div>
+      <div class="q-hint">my name basically - caps or no idm</div>
+      <input id="senderInput" type="text" placeholder="whats my nameeee">
+      <div style="display:flex;gap:8px;margin-top:10px;">
+        <button class="btn" onclick="checkQ4()">check answer yay</button>
+        <button class="btn" onclick="clearField('senderInput')">clear text</button>
+      </div>
+      <div class="small" id="q4-msg"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question" id="q5">
+      <div class="q-title">5) are you like ancient like dinosaur type old like big bang type old like before the world started old</div>
+      <div class="q-hint">press <strong>yes</strong> or <strong>no</strong>.</div>
+      <div class="btn-row" style="margin-top:8px;">
+        <button class="btn btn-yes" onclick="checkQ5('yes')">yes hahahaha</button>
+        <button class="btn btn-no" onclick="checkQ5('no')">No</button>
+      </div>
+      <div class="small" id="q5-msg"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question" id="q6">
+      <div class="q-title">6) what is the date today..</div>
+      <div class="q-hint">again date input supports dropdown or many text formats like 20/31/2030 or 12/31/2030.</div>
+      <div style="display:flex;gap:8px;margin-bottom:8px;">
+        <select id="daySel"></select>
+        <select id="monthSel"></select>
+        <select id="yearSel"></select>
+      </div>
+      <div style="margin-bottom:8px;">
+        <input id="dateText" type="text" placeholder="or type by hand e.g. 26/11/2025">
+      </div>
+      <div style="display:flex;gap:8px;margin-top:6px;">
+        <button class="btn" onclick="checkQ6()">check answer</button>
+        <button class="btn" onclick="clearField('dateText')">clear text/date</button>
+      </div>
+      <div class="small" id="q6-msg"></div>
+    </div>
+
+  </div>
+
+  <div class="right">
+    <div class="progress">Letters unlocked:</div>
+    <div class="letters" aria-live="polite">
+      <div class="letter" id="l1">F</div>
+      <div class="letter" id="l2">O</div>
+      <div class="letter" id="l3">S</div>
+      <div class="letter" id="l4">S</div>
+      <div class="letter" id="l5">I</div>
+      <div class="letter" id="l6">L</div>
+    </div>
+
+    <div class="final-card">
+      <div class="small">Progress: <span id="progressCount">0</span>/6</div>
+      <div class="final-message" id="finalMessage">
+        <div class="typewriter" id="typewriter">🎉 HAPPY BIRTHDAY! 🎉 — message arriving soon.</div>
+      </div>
+    </div>
+
+    <footer class="small">Dark blue theme — replace images by dropping them into the code where indicated.</footer>
+  </div>
+</div>
+
+<canvas id="confetti-canvas" style="position:fixed;left:0;top:0;pointer-events:none;z-index:9999;"></canvas>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
