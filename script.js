@@ -96,13 +96,6 @@ function tryParseDate(text){
   if(iso){return {day:parseInt(iso[3],10),month:parseInt(iso[2],10),year:parseInt(iso[1],10)};}
   const monthNames={january:1,february:2,march:3,april:4,may:5,june:6,july:7,august:8,september:9,october:10,november:11,december:12};
   const tokens=sepText.split(' ');
- const monthNames = {
-    january:1,february:2,march:3,april:4,may:5,june:6,
-    july:7,august:8,september:9,october:10,november:11,december:12
-  };
-
-  const tokens = sepText.split(' ');
-
   if(tokens.length >= 2){
     for(let i=0; i<tokens.length; i++){
       const tkn = tokens[i].toLowerCase();
@@ -169,4 +162,3 @@ function typeWriter(el, speed){
 function launchConfetti(){
   // empty function for now so page doesn’t error
 }
-
