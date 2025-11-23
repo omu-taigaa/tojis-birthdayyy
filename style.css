@@ -134,6 +134,9 @@ select {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* keep the right column visible while scrolling */
+  position: sticky;
+  top: 24px;
 }
 
 .letters {
@@ -204,7 +207,11 @@ footer.small {
     grid-template-columns: 1fr;
   }
   .right {
+    /* NOTE: this may be better at the end on mobile devices so the user can see it when all the results are complete. */
     order: -1;
     margin-bottom: 14px;
+    /* disable sticky behavior on small screens */
+    position: static;
+    top: auto;
   }
 }
