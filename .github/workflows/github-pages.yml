@@ -22,18 +22,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'lts/*'
-
-      - name: Install dependencies
-        run: npm install
-
-      # Optional: run tests before deploy
-      # - name: Run unit tests
-      #   run: npm test
-
       - name: Prepare static site
         run: |
           mkdir -p dist
