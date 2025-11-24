@@ -79,39 +79,59 @@ function checkQ6(){
 }
 
 function tryParseDate(text){
-  text=text.trim();
-  const sepText=text.replace(/\s+/g,' ').replace(/[,]/g,'').trim();
-  const partsSlash=sepText.split(/[\/\-\.\s]+/);
-  if(partsSlash.length===3){
-    const a=parseInt(partsSlash[0],10);
-    const b=parseInt(partsSlash[1],10);
-    const c=parseInt(partsSlash[2],10);
-    if(!isNaN(a)&&!isNaN(b)&&!isNaN(c)){
-      if(a>12){return {day:a,month:b,year:normalizeYear(c)};}
-      else if(b>12){return {day:b,month:a,year:normalizeYear(c)};}
-      else{return {day:a,month:b,year:normalizeYear(c)};}
-    }
-  }
-  const iso=sepText.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
-  if(iso){return {day:parseInt(iso[3],10),month:parseInt(iso[2],10),year:parseInt(iso[1],10)};}
-  const monthNames={january:1,february:2,march:3,april:4,may:5,june:6,july:7,august:8,september:9,october:10,november:11,december:12};
-  const tokens=sepText.split(' ');
-  if(tokens.length >= 2){
-    for(let i=0; i<tokens.length; i++){
-      const tkn = tokens[i].toLowerCase();
-      if(monthNames[tkn]){
-        const month = monthNames[tkn];
-        // try formats like: "26 November 2025" or "November 26 25"
-        const nums = tokens.filter(x => !isNaN(parseInt(x,10))).map(x => parseInt(x,10));
-        if(nums.length >= 1){
-          const day = nums[0];
-          const year = nums[1] ? normalizeYear(nums[1]) : (new Date()).getFullYear();
-          return {day, month, year};
-        }
-      }
-    }
-  }
-  return null;
+text = text.trim();
+const sepText = text.replace(/\s+/g, ' ').replace(/[,]/g, '').trim();
+
+const partsSlash = sepText.split(/[\/\-\.\s]+/);
+if (partsSlash.length === 3) {
+const a = parseInt(partsSlash[0], 10);
+const b = parseInt(partsSlash[1], 10);
+const c = parseInt(partsSlash[2], 10);
+if (!isNaN(a) && !isNaN(b) && !isNaN(c)) {
+if (a > 12) {
+return { day: a, month: b, year: normalizeYear(c) };
+} else if (b > 12) {
+return { day: b, month: a, year: normalizeYear(c) };
+} else {
+return { day: a, month: b, year: normalizeYear(c) };
+}
+}
+}
+
+const iso = sepText.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+if (iso) {
+return {
+day: parseInt(iso[3], 10),
+month: parseInt(iso[2], 10),
+year: parseInt(iso[1], 10)
+};
+}
+
+const monthNames = {
+january: 1, february: 2, march: 3, april: 4, may: 5, june: 6,
+july: 7, august: 8, september: 9, october: 10, november: 11, december: 12
+};
+
+const tokens = sepText.split(' ');
+
+if (tokens.length >= 2) {
+for (let i = 0; i < tokens.length; i++) {
+const tkn = tokens[i].toLowerCase();
+if (monthNames[tkn]) {
+const month = monthNames[tkn];
+const nums = tokens
+.filter(x => !isNaN(parseInt(x, 10)))
+.map(x => parseInt(x, 10));
+if (nums.length >= 1) {
+const day = nums[0];
+const year = nums[1] ? normalizeYear(nums[1]) : (new Date()).getFullYear();
+return { day, month, year };
+}
+}
+}
+}
+
+return null;
 }
 
 function normalizeYear(y){
